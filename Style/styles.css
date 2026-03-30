@@ -1535,7 +1535,7 @@
 
       .brand-strip-title {
         margin-bottom: 8px;
-        font-size: 1.18rem;
+        font-size: clamp(1.5rem, 3.2vw, 2.6rem);
         line-height: 1.18;
       }
 
@@ -1604,10 +1604,6 @@
       .section-head p { font-size: 0.92rem; }
       .contact-main h2 { font-size: 1.4rem; }
       .contact-list li { font-size: 0.92rem; }
-
-      .brand-strip-title {
-        font-size: 0.95rem;
-      }
 
     }
 
