@@ -12,7 +12,19 @@
   <link rel="stylesheet" href="../Style/styles.css" />
 </head>
 
-<body>
+<body class="loader-active">
+  <div class="site-loader" id="siteLoader" role="status" aria-live="polite" aria-label="Loading Aurang website">
+    <div class="site-loader-content" id="siteLoaderContent">
+      <div class="site-loader-triangle-wrap" aria-hidden="true">
+        <svg class="site-loader-triangle" viewBox="0 0 100 100" focusable="false" aria-hidden="true">
+          <path class="site-loader-triangle-path" d="M50 14 L12 76 L88 76 L50 14" />
+        </svg>
+      </div>
+      <h1 class="site-loader-brand" id="siteLoaderBrand">AURANG</h1>
+      <div class="site-loader-subtitle">BUSINESS SERVICES</div>
+    </div>
+  </div>
+
   <header class="topbar">
     <div class="container nav">
       <a href="#home" class="brand" aria-label="AURANG home">
@@ -102,17 +114,12 @@
             <h2>Empowering Businesses with Seamless Setup & PRO Services in the UAE</h2>
           </div>
           <p>
-            AURANG is a business consultancy dedicated to helping entrepreneurs, startups, and growing companies
-            establish a presence in the UAE. We simplify setup by guiding clients through every stage, from planning and
-            documentation to final approvals and compliance. By removing complexity, we provide a clear, reliable
-            pathway for businesses entering one of the world's most dynamic markets, consistently tailoring our approach
-            to your unique goals and operational needs.
-          </p>
-          <p>
-            Placing a strong emphasis on transparency, efficiency, and professionalism, we keep clients informed so they
-            can make confident decisions. Our deep knowledge of UAE regulations allows us to navigate procedures while
-            maintaining full compliance. Beyond initial setup, we support long-term growth, building lasting
-            relationships by offering dependable guidance and a seamless experience from start to finish.
+            At AURANG we simplify the complexities of the UAE market to help your entrepreneurial dreams take flight.
+            Based in the heart of Dubai, we are a dedicated consultancy specializing in comprehensive Business Setup,
+            Visa Processing, and PRO Services.
+            Whether you are a solo entrepreneur looking for a freelance permit or a multinational corporation
+            establishing a mainland branch, our team provides the local expertise and administrative support needed to
+            navigate the UAE’s regulatory landscape with ease.
           </p>
           <div class="about-points">
             <div class="chip">Business Formation</div>
@@ -321,6 +328,84 @@
       </div>
     </section>
 
+    <section class="team reveal" id="team">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Our Team</p>
+          <h2>Meet the Experts Behind Aurang</h2>
+          <p>
+            A focused team supporting your business setup journey with practical guidance, accurate documentation, and
+            timely execution.
+          </p>
+        </div>
+
+        <div class="team-grid" aria-label="Team members">
+          <article class="team-card" tabindex="0">
+            <figure class="team-media">
+              <svg class="team-avatar" viewBox="0 0 240 280" preserveAspectRatio="xMidYMin slice" role="img"
+                aria-label="Default profile avatar">
+                <defs>
+                  <linearGradient id="avatarBg1" x1="0" x2="1" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#1f2b40" />
+                    <stop offset="100%" stop-color="#0f1624" />
+                  </linearGradient>
+                </defs>
+                <rect width="240" height="280" fill="url(#avatarBg1)" />
+                <circle cx="120" cy="74" r="48" fill="#d6dde9" />
+                <path d="M32 258c0-62 42-108 88-108s88 46 88 108" fill="#d6dde9" />
+              </svg>
+            </figure>
+            <div class="team-meta">
+              <h3>Maneesh Reddy</h3>
+              <p>CEO and Founder</p>
+            </div>
+          </article>
+
+          <article class="team-card" tabindex="0">
+            <figure class="team-media">
+              <svg class="team-avatar" viewBox="0 0 240 280" preserveAspectRatio="xMidYMin slice" role="img"
+                aria-label="Default profile avatar">
+                <defs>
+                  <linearGradient id="avatarBg2" x1="0" x2="1" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#16263a" />
+                    <stop offset="100%" stop-color="#0b1420" />
+                  </linearGradient>
+                </defs>
+                <rect width="240" height="280" fill="url(#avatarBg2)" />
+                <circle cx="120" cy="74" r="48" fill="#d6dde9" />
+                <path d="M32 258c0-62 42-108 88-108s88 46 88 108" fill="#d6dde9" />
+              </svg>
+            </figure>
+            <div class="team-meta">
+              <h3>Nomula Vyshnavi</h3>
+              <p>Managing Director</p>
+            </div>
+          </article>
+
+          <article class="team-card" tabindex="0">
+            <figure class="team-media">
+              <svg class="team-avatar" viewBox="0 0 240 280" preserveAspectRatio="xMidYMin slice" role="img"
+                aria-label="Default profile avatar">
+                <defs>
+                  <linearGradient id="avatarBg3" x1="0" x2="1" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#1b2f47" />
+                    <stop offset="100%" stop-color="#0e1a29" />
+                  </linearGradient>
+                </defs>
+                <rect width="240" height="280" fill="url(#avatarBg3)" />
+                <circle cx="120" cy="74" r="48" fill="#d6dde9" />
+                <path d="M32 258c0-62 42-108 88-108s88 46 88 108" fill="#d6dde9" />
+              </svg>
+            </figure>
+            <div class="team-meta">
+              <h3>Vidyasagar R</h3>
+              <p>Marketing Head</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="contact reveal" id="contact">
       <div class="container">
         <div class="contact-layout">
@@ -459,6 +544,48 @@
         window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
       }
 
+      const siteLoader = document.getElementById("siteLoader");
+      const siteLoaderContent = document.getElementById("siteLoaderContent");
+      const siteLoaderBrand = document.getElementById("siteLoaderBrand");
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (siteLoader && siteLoaderContent && siteLoaderBrand) {
+        const text = (siteLoaderBrand.textContent || "").trim();
+        siteLoaderBrand.textContent = "";
+
+        text.split("").forEach((char, index) => {
+          const span = document.createElement("span");
+          span.className = "site-loader-char";
+          span.textContent = char;
+          span.style.animationDelay = (2200 + index * 90) + "ms";
+          siteLoaderBrand.appendChild(span);
+        });
+
+        const hideLoader = () => {
+          siteLoader.classList.add("fade-out");
+          window.setTimeout(() => {
+            siteLoader.style.display = "none";
+            document.body.classList.remove("loader-active");
+          }, 1240);
+        };
+
+        if (prefersReducedMotion) {
+          window.setTimeout(hideLoader, 900);
+        } else {
+          window.setTimeout(() => {
+            siteLoaderContent.classList.add("triangle-pulse");
+          }, 4700);
+
+          window.setTimeout(() => {
+            siteLoader.classList.add("pre-exit");
+          }, 6050);
+
+          window.setTimeout(hideLoader, 6320);
+        }
+      } else {
+        document.body.classList.remove("loader-active");
+
+      }
       const row = document.getElementById("servicesRow");
       const dotsWrap = document.getElementById("dots");
       const prev = document.getElementById("prevBtn");
