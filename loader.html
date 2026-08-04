@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AURANG | Business Setup & PRO Services in Dubai, UAE</title>
+  <meta name="description" content="AURANG Business Setup and PRO Services in Dubai, UAE." />
+  <!-- Favicon / Browser Tab Logo Icon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon.png" />
+  <link rel="shortcut icon" type="image/png" href="assets/favicon.png" />
+  <style>
+    :root {
+      --bg: #000000;
+      --gold: #d4af37;
+      --gold-soft: rgba(212, 175, 55, 0.34);
+      --text-soft: rgba(255, 255, 255, 0.78);
+      --ease-premium: cubic-bezier(0.22, 0.61, 0.36, 1);
+      --loader-duration: 6800ms;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      background: var(--bg);
+      overflow: hidden;
+      font-family: "Century Gothic", "Avenir Next", "Segoe UI", "Trebuchet MS", sans-serif;
+      color: #fff;
+    }
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 50% 48%, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.02) 22%, rgba(0, 0, 0, 0.96) 60%),
+                  var(--bg);
+      will-change: opacity, transform, filter;
+      transition: opacity 620ms var(--ease-premium), transform 620ms var(--ease-premium), filter 620ms var(--ease-premium);
+    }
+
+    .loader::before {
+      content: "";
+      position: absolute;
+      width: min(52vmin, 420px);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.18) 0%, rgba(212, 175, 55, 0.04) 38%, rgba(212, 175, 55, 0) 72%);
+      filter: blur(22px);
+      transform: translateZ(0);
+      animation: centerGlow 2600ms ease-in-out 1000ms both;
+      pointer-events: none;
+    }
+
+    .loader-content {
+      position: relative;
+      display: grid;
+      justify-items: center;
+      align-items: center;
+      gap: 0;
+      text-align: center;
+      padding: 24px 20px;
+      transform: translateZ(0);
+    }
+
+    .triangle-wrap {
+      width: clamp(96px, 14vw, 136px);
+      margin: 0 auto 8px;
+      position: relative;
+      transform: translateX(-2px);
+    }
+
+    .triangle-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 10% 8%;
+      border-radius: 40%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.26) 0%, rgba(212, 175, 55, 0) 74%);
+      filter: blur(10px);
+      opacity: 0;
+      transform: scale(0.9);
+    }
+
+    .triangle {
+      width: 100%;
+      height: auto;
+      display: block;
+      overflow: visible;
+      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.36));
+    }
+
+    .triangle-path {
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 300;
+      stroke-dashoffset: 300;
+      opacity: 0.92;
+      animation: drawTriangle 900ms var(--ease-premium) 1260ms forwards;
+    }
+
+    .brand {
+      position: relative;
+      display: inline-block;
+      margin: 0 auto;
+      width: fit-content;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-size: clamp(1.55rem, 4.9vw, 2.38rem);
+      font-weight: 400;
+      color: #f5e8be;
+      line-height: 1.1;
+      white-space: nowrap;
+      overflow: hidden;
+      font-stretch: expanded;
+    }
+
+    .brand .char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(12px) scale(0.985);
+      filter: blur(6px);
+      animation: letterIn 520ms var(--ease-premium) forwards;
+      will-change: transform, opacity, filter;
+    }
+
+    .brand::after {
+      content: "";
+      position: absolute;
+      top: -8%;
+      bottom: -8%;
+      left: -42%;
+      width: 36%;
+      background: linear-gradient(110deg, rgba(212, 175, 55, 0) 0%, rgba(212, 175, 55, 0.6) 48%, rgba(212, 175, 55, 0) 100%);
+      transform: translateX(0) skewX(-14deg);
+      opacity: 0;
+      pointer-events: none;
+      animation: shimmer 760ms ease-out 2780ms forwards;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      font-size: clamp(0.64rem, 2vw, 0.9rem);
+      letter-spacing: 0.34em;
+      color: #c4c5ca;
+      font-weight: 600;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(10px);
+      filter: blur(5px);
+      animation: subtitleIn 620ms var(--ease-premium) 3180ms forwards;
+      will-change: transform, opacity, filter;
+    }
+
+    .triangle-pulse .triangle-wrap::after {
+      animation: pulseGlow 660ms var(--ease-premium) forwards;
+    }
+
+    .pre-exit {
+      transform: scale(1.03);
+      transition: transform 420ms var(--ease-premium);
+    }
+
+    .fade-out {
+      opacity: 0;
+      transform: scale(1.04);
+      filter: blur(2px);
+      pointer-events: none;
+    }
+
+    @keyframes drawTriangle {
+      from {
+        stroke-dashoffset: 300;
+        opacity: 0.7;
+      }
+      to {
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+    }
+
+    @keyframes letterIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        opacity: 0;
+        transform: translateX(0) skewX(-14deg);
+      }
+      18% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(410%) skewX(-14deg);
+      }
+    }
+
+    @keyframes subtitleIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.06);
+      }
+      100% {
+        opacity: 0.66;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes centerGlow {
+      0% {
+        opacity: 0;
+        transform: scale(0.92);
+      }
+      35% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.84;
+        transform: scale(1);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .triangle-path,
+      .brand .char,
+      .brand::after,
+      .subtitle,
+      .loader::before,
+      .triangle-wrap::after {
+        animation: none !important;
+      }
+
+      .brand .char,
+      .subtitle {
+        opacity: 1;
+        transform: none;
+        filter: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="loader" id="loader" role="status" aria-live="polite" aria-label="Loading Aurang website">
+    <div class="loader-content" id="loaderContent">
+      <div class="triangle-wrap" aria-hidden="true">
+        <!-- Path order: bottom -> left -> right -> bottom -->
+        <svg class="triangle" viewBox="0 0 100 100" focusable="false" aria-hidden="true">
+          <path class="triangle-path" d="M50 14 L12 76 L88 76 L50 14" />
+        </svg>
+      </div>
+      <h1 class="brand" id="brandText">AURANG</h1>
+      <div class="subtitle">BUSINESS SERVICES</div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const REDIRECT_AFTER_ANIMATION = false; // Set true to redirect to index.html automatically.
+      const REDIRECT_TARGET = "index.html";
+      const TOTAL_DURATION = 6800;
+
+      const loader = document.getElementById("loader");
+      const loaderContent = document.getElementById("loaderContent");
+      const brand = document.getElementById("brandText");
+      const text = (brand.textContent || "").trim();
+      brand.textContent = "";
+
+      // Build brand text as individual spans for letter-by-letter animation.
+      text.split("").forEach((char, index) => {
+        const span = document.createElement("span");
+        span.className = "char";
+        span.textContent = char;
+        span.style.animationDelay = `${2200 + index * 90}ms`;
+        brand.appendChild(span);
+      });
+
+      // Final triangle pulse.
+      setTimeout(() => {
+        loaderContent.classList.add("triangle-pulse");
+      }, 4700);
+
+      // Slight premium scale-up before exit.
+      setTimeout(() => {
+        loader.classList.add("pre-exit");
+      }, 6050);
+
+      // Fade out and then either redirect or hide.
+      setTimeout(() => {
+        loader.classList.add("fade-out");
+      }, 6320);
+
+      setTimeout(() => {
+        if (REDIRECT_AFTER_ANIMATION) {
+          window.location.href = REDIRECT_TARGET;
+          return;
+        }
+        loader.style.display = "none";
+      }, TOTAL_DURATION);
+    })();
+  </script>
+</body>
+</html>
