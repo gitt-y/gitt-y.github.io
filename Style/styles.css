@@ -1283,7 +1283,7 @@
       left: 0;
       top: 0;
       pointer-events: none;
-      z-index: 120;
+      z-index: 9999;
       opacity: 0;
       transition: opacity 0.18s ease, transform 0.1s ease;
     }
@@ -1403,6 +1403,294 @@
       100% {
         opacity: 0.84;
         transform: scale(1);
+      }
+    }
+
+    /* --- Reels Section --- */
+    .reels-section {
+      padding: clamp(56px, 8vw, 92px) 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--bg);
+    }
+    
+    .reels-showcase {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+    
+    .reel-card {
+      position: relative;
+      aspect-ratio: 9 / 16;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #000;
+      cursor: pointer;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      isolation: isolate;
+    }
+    
+    .reel-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      z-index: 1;
+    }
+    
+    .reel-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0.85) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px;
+      transition: background 0.4s ease;
+    }
+    
+    .reel-header {
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    .reel-category {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: opacity 0.3s ease;
+    }
+    
+    .reel-play-btn {
+      align-self: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      opacity: 0.8;
+      transform: scale(0.9);
+      transition: opacity 0.4s ease, transform 0.4s ease, background 0.4s ease;
+    }
+    
+    .reel-play-btn svg {
+      width: 24px;
+      height: 24px;
+      margin-left: 4px;
+    }
+    
+    .reel-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .reel-title {
+      font-family: "Manrope", sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0;
+      color: #fff;
+    }
+    
+    .reel-cta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--gold-1);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    
+    .insta-icon {
+      width: 14px;
+      height: 14px;
+    }
+    
+    @media (hover: hover) and (pointer: fine) {
+      .reel-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
+      }
+      .reel-card:hover .reel-video {
+        transform: scale(1.05);
+      }
+      .reel-card:hover .reel-overlay {
+        background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.95) 100%);
+      }
+      .reel-card:hover .reel-play-btn {
+        opacity: 1;
+        transform: scale(1.1);
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .reel-card:hover .reel-cta {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .reels-cta-wrap {
+      margin-top: 40px;
+      text-align: center;
+    }
+    
+    .reels-bottom-cta {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      transition: color 0.3s ease;
+    }
+    
+    .reels-bottom-cta:hover {
+      color: var(--gold-1);
+    }
+    
+    /* --- Reel Modal --- */
+    .reel-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    
+    .reel-modal[aria-hidden="false"] {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    .reel-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(16px);
+      z-index: 1;
+    }
+    
+    .reel-modal-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      z-index: 3;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 2rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease, transform 0.3s ease;
+      line-height: 0;
+      padding-bottom: 4px;
+    }
+    
+    .reel-modal-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+    
+    .reel-modal-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 45vh; /* 9:16 aspect ratio relative to viewport height */
+      aspect-ratio: 9 / 16;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      transform: translateY(20px) scale(0.95);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .reel-modal[aria-hidden="false"] .reel-modal-content {
+      transform: translateY(0) scale(1);
+    }
+    
+    .reel-modal-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+      background: #000;
+      outline: none;
+    }
+    
+    .modal-cta {
+      width: 100%;
+      text-align: center;
+    }
+    
+    /* Reels Responsiveness */
+    @media (max-width: 1024px) {
+      .reels-showcase {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 16px;
+        padding-bottom: 24px;
+        scrollbar-width: none;
+      }
+      .reels-showcase::-webkit-scrollbar { display: none; }
+      .reel-card {
+        flex: 0 0 clamp(280px, 45vw, 360px);
+        scroll-snap-align: center;
+      }
+      .reel-play-btn {
+        opacity: 1;
+        transform: scale(1);
+      }
+      .reel-cta {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @media (max-width: 760px) {
+      .reel-card {
+        flex: 0 0 85vw;
+        scroll-snap-align: center;
+      }
+      .reel-modal-content {
+        max-width: 85vw;
+        max-height: calc(85vw * 16 / 9);
+      }
+      .reel-modal-close {
+        top: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.6rem;
       }
     }
 
